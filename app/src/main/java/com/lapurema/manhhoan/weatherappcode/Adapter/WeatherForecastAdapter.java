@@ -16,8 +16,8 @@ import com.squareup.picasso.Picasso;
 
 public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecastAdapter.MyViewHolder> {
 
-    Context context;
-    WeatherForecastResult weatherForecastResult;
+    private Context context;
+    private WeatherForecastResult weatherForecastResult;
 
     public WeatherForecastAdapter(Context context, WeatherForecastResult weatherForecastResult) {
         this.context = context;
@@ -31,13 +31,13 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
         return new MyViewHolder(view);
     }
 
+    //Đỗ dữ liệu vào cho itemRecycleView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
 
-        Picasso.get().load(new StringBuilder("https://openweathermap.org/img/w/")
-                .append(weatherForecastResult.getList().get(i).getWeather().get(0).getIcon())
-                .append(".png")
-                .toString()
+        Picasso.get().load("https://openweathermap.org/img/w/" +
+                weatherForecastResult.getList().get(i).getWeather().get(0).getIcon() +
+                ".png"
         ).into(myViewHolder.img_weather);
         myViewHolder.txt_date_time.setText(
                 new StringBuilder(Common.convertUnixToDate(weatherForecastResult.getList().get(i).getDt())));
@@ -52,11 +52,11 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
         return weatherForecastResult.getList().size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
         TextView txt_date_time, txt_description, txt_temparature;
         ImageView img_weather;
 
-        public MyViewHolder(@NonNull View itemView) {
+        MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             img_weather = (ImageView) itemView.findViewById(R.id.img_weather_forecast);
