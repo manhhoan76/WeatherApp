@@ -102,7 +102,6 @@ public class CityFragment extends Fragment {
         return view;
     }
 
-
     private class LoadCities extends SimpleAsyncTask<List<String>> {
 
         @Override

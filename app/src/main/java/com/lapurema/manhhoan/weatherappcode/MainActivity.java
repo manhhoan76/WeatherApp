@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         Dexter.withActivity(this)
                 .withPermissions(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
                 .withListener(new MultiplePermissionsListener() {
+
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
 
@@ -101,13 +102,10 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(TodayFragment.getInstance(), "Today");
-        adapter.addFragment(ForecastFragment.getInstance(),
-                "5day");
-        adapter.addFragment(CityFragment.getInstance(),
-                "Search");
+        adapter.addFragment(ForecastFragment.getInstance(), "5day");
+        adapter.addFragment(CityFragment.getInstance(), "Search");
         viewPager.setAdapter(adapter);
     }
-
 
     @SuppressLint("RestrictedApi")
     private void buildLocationRequest() {
